@@ -1,11 +1,10 @@
 const express = require("express");
 
-// init app & middleware
 const app = express();
 
 // routes
 app.get("/brands", (req, res) => {
-    res.json({ message: "Welcome to the API" })
+    res.json({ message: "API Connected" })
 })
 
 module.exports = app;
