@@ -41,8 +41,23 @@ exports.get_brands_by_category = async (req, res) => {
   }
 }
 
+// get brand by name
+exports.get_brand_by_name = async (req, res) => {
+  const db = await getDb("ethical-brands");
+  const name = await db.collection("books").find({ name: { $regex: req.params.name, $options: "i" } }).toArray();
 
-// get brands by id controller?
+  if (name) {
+    try {
+      const brand = await db.collection("brands").findOne({ name: { $regex: req.params.name, $options: "i" } });
+      res.status(200).json(brand); 
+    } catch (error) {
+      res.status(500).json({ message: "Could not find document." })
+    }
+  } else {
+    res.status(404).json({ error: "Invalid search item. Please try again" });
+    console.log(brand)
+  }
+}
 
 // POST
 // post brand controller?
