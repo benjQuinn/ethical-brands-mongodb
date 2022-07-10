@@ -1,3 +1,4 @@
+const db = require("../../services/db");
 const { getDb } = require("../../services/db");
 
 // GET
@@ -49,6 +50,40 @@ exports.get_brands_by_category = async (req, res) => {
 // PATCH
 // update brand by id controller?
 
+exports.updateById = async (req, res) => {
+  try {
+    await db
+    .collection ('brands')
+    .doc(req.params.brandsId)
+    .updated(req, body);
+    res.send('Updated successfully');
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
+
 // DELETE
 // delete all brands
+exports.delete_all_brands = async (req, res) => {
+  try {
+    await db
+    .collection ('brands')
+    .doc(req.params.brandsId)
+    .updated(req, body);
+    res.send('Deleted successfully')
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
 // delete brand by id
+exports.deleteById = async (req, res) => {
+  try {
+    await db
+    .collection ('brands')
+    .doc(req.params.brandsId)
+    .updated(req, body);
+    res.send('Deleted successfully')
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
